@@ -1,0 +1,12 @@
+/boost_1_42/
+*~
+*.ncb
+/Webcrawler.sln
+/Webcrawler/Webcrawler.vcproj
+/Webcrawler/bin/
+/Webcrawler/obj/
+*.suo
+*.user
+*.vcproj
+*.o
+/Webcrawler/Webcrawler
