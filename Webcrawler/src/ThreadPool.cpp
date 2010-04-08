@@ -26,7 +26,7 @@ ThreadPool::ThreadPool(uint poolSize)
 	if(poolSize == 0)_size = 10;
 	else _size = poolSize;
 	
-	for(uint i=0; i < _threadList.size(); i++)
+	for(uint i=0; i < _size; i++)
 		_threadList[i] = boost::thread( &ThreadPool::threads_main, this, this );
 }
 
@@ -67,6 +67,4 @@ IThreadable* ThreadPool::getTask()
 
 void ThreadPool::start( void )
 {
-	for(uint i=0; i<_threadList.size(); i++)
-		_threadList[i].join();
 }
