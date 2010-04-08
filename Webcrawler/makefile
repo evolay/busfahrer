@@ -5,7 +5,7 @@ CXX = g++ -g
 all: Webcrawler
 
 Webcrawler: src/main.o src/ThreadPool.o 
-	$(CXX) -pthread -o $@ src/main.o src/ThreadPool.o -lboost_thread-mt
+	$(CXX) -pthread -o $@ src/main.o src/ThreadPool.o -lboost_thread-mt -lhtmlcxx
 
 #main.o:
 #	$(CXX) -c -o $@ -pthread src/main.cpp
