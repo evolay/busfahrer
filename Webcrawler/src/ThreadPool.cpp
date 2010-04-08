@@ -31,7 +31,9 @@ ThreadPool::ThreadPool(uint poolSize)
 
 ThreadPool::~ThreadPool(void)
 {
-	
+	for(uint i=0; i < _threadCount; i++)
+		delete _threadList[i];
+	_threadList.empty();
 }
 
 void ThreadPool::submitTask(IThreadable* threadable)

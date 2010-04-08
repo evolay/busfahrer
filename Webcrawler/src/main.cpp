@@ -43,7 +43,7 @@ int main(char** argv, char** argc)
 	cout << httptest.get("http://microsoft.de")<<endl;
 	cout << httptest.getOutput();
 
-	while(true)
-	{
-	}
+	
 }
+
+
