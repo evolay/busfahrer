@@ -1,7 +1,6 @@
 #include "HTMLParser.h"
 
 using namespace std;
-using namespace htmlcxx;
 
 void HTMLParser::parse() {
 	/*htmlcxx::HTML::ParserDom parser;
