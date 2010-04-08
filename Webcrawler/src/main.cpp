@@ -7,6 +7,7 @@
 
 using namespace std;
 using namespace htmlcxx::HTML;
+using namespace TrudyTheCrawler;
 
 /*int main( char** argv, char** argc)
 {
@@ -33,10 +34,9 @@ int main(char** argv, char** argc)
     for(uint i=0; i<html.size(); i++)
     	cout << html[i] << " url\n";
 
-	/* EXAMPLE
+	
  	HTTP httptest;
-	httptest.get("http://klamm.de");
-	std::cout << httptest.getOutput();
-*/
+	cout << httptest.get("http://microsoft.de")<<endl;
+	cout << httptest.getOutput();
 
 }
