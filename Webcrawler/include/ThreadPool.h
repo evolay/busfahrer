@@ -15,17 +15,16 @@ class ThreadPool
 		~ThreadPool( void );
 	
 		void						start( void );
-
-	private:
 		void						submitTask( IThreadable* threadable ); //enques task for execution (worker will be deleted after execution)
-		IThreadable*				getTask(); //waits for signal to return task
+	private:
+		IThreadable*				getTask(); //returns task if queue != empty, else waiting for notification
 		unsigned int				threads_main( ThreadPool* threadPool );
 
 		std::deque<IThreadable*>	_taskQueue;
-		std::vector<boost::thread>	_threadList;
+		std::vector<boost::thread*>	_threadList;
 		uint						_threadCount;
 		boost::mutex				_mutex;
-		boost::condition_variable	_condition;
+		boost::condition_variable	_taskCondition;
 };
 
 };
