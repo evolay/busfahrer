@@ -7,5 +7,6 @@ class HTMLParser
 	public:
 		HTMLParser() {}
 		~HTMLParser() {}
+
 		void parse();
 };

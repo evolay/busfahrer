@@ -1,6 +1,12 @@
 #include <cctype>
 #include <cstring>
-#include <strings.h>
+
+
+#ifdef _WIN32
+	#include <string.h>
+#else
+	#include <stings.h>
+#endif
 
 //#define DEBUG
 //#include "debug.h"
