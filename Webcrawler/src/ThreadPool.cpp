@@ -27,7 +27,7 @@ ThreadPool::ThreadPool(uint poolSize)
 	else _threadCount = poolSize;
 	
 	for(uint i=0; i < _threadCount; i++)
-		_threadList[i] = boost::thread( boost::bind(&ThreadPool::threads_main, this));
+		_threadList[i] = boost::thread( boost::bind(&ThreadPool::threads_main, this, this));
 
 }
 
