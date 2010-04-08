@@ -1,12 +1,13 @@
 #include "htmlcxx/html/ParserDom.h"
-#include <string>
-	
+#include <iostream>
+
+
 class HTMLParser
 {	
 	public:
 		HTMLParser();
 		~HTMLParser( void );
-		void parse(string str);
+		void parse(std::string str);
 
 	private:
 		HTML::ParserDom parser;

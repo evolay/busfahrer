@@ -22,12 +22,13 @@ unsigned int ThreadPool::threads_main( ThreadPool* threadPool ) {
 
 ThreadPool::ThreadPool(uint poolSize)
 {
-	unsigned long _size;
-	if(poolSize == 0)_size = 10;
-	else _size = poolSize;
+	uint _size;
+	if(poolSize <= 0)_size = 10;
+	else _threadCount = poolSize;
 	
-	for(uint i=0; i < _size; i++)
-		_threadList[i] = boost::thread( &ThreadPool::threads_main, this, this );
+	for(uint i=0; i < _threadCount; i++)
+		_threadList[i] = boost::thread( boost::bind(&ThreadPool::threads_main, this));
+
 }
 
 ThreadPool::~ThreadPool(void)
@@ -40,11 +41,10 @@ ThreadPool::~ThreadPool(void)
 
 void ThreadPool::submitTask(IThreadable* threadable)
 {
-	/*_queueLock.lock();
-	_taskQueue.push_back(threadable);
-	_queueLock.unlock();
-	_tasksAvailable.signal();
-	*/
+	boost::mutex::scoped_lock( _mutex );
+	std::cout << "ThreadPool::submitTask -> submitting Task..." << std::endl;
+	_taskQueue.push_back( threadable );
+	//boost::thread::start_thread();
 }
 
 IThreadable* ThreadPool::getTask()

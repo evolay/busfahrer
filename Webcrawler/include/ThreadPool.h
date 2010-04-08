@@ -12,7 +12,7 @@ class ThreadPool
 {	
 	public:
 		ThreadPool( uint poolSize = 10 );
-		~ThreadPool( void );
+		~ThreadPool( void ){}
 	
 		void						start( void );
 
@@ -23,6 +23,8 @@ class ThreadPool
 
 		std::deque<IThreadable*>	_taskQueue;
 		std::vector<boost::thread>	_threadList;
+		uint						_threadCount;
+		boost::mutex				_mutex;
 };
 
 };
