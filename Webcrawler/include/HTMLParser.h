@@ -1,6 +1,8 @@
 #include <iostream>
 #include "htmlcxx/include/ParserDom.h"
 #include <string>
+#include <vector>
+#include <algorithm>
 
 class HTMLParser
 {	
@@ -8,5 +10,7 @@ class HTMLParser
 		HTMLParser() {}
 		~HTMLParser() {}
 
-		void parse();
+		std::vector<std::string> parse(std::string html);
+	private:
+		std::string UpToLow(std::string str);
 };
