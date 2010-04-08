@@ -1,19 +1,13 @@
-#include <htmlcxx/html/ParserDom.h>
-
-namespace TrudyTheCrawler
-{
-
-typedef unsigned int uint;
+#include "htmlcxx/html/ParserDom.h"
+#include <string>
 	
-class HTML
+class HTMLParser
 {	
 	public:
-		HTML();
-		~HTML( void );
-		List parse(string str);
+		HTMLParser();
+		~HTMLParser( void );
+		void parse(string str);
 
 	private:
 		HTML::ParserDom parser;
-};
-
 };

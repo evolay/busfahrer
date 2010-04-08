@@ -1,6 +1,6 @@
 #include "HTML.h"
 
-List HTML::parse(string str) {
+/*List HTMLParser::parse(string str) {
 	tree<HTML::Node>::iterator it = dom.begin();
 	tree<HTML::Node>::iterator end = dom.end();
 	
@@ -14,4 +14,4 @@ List HTML::parse(string str) {
 				cout << link.second << endl;
 		}
 	}
-}
+}*/
