@@ -5,7 +5,7 @@
 #ifdef _WIN32
 	#include <string.h>
 #else
-	#include <stings.h>
+	#include <strings.h>
 #endif
 
 //#define DEBUG

@@ -1,10 +1,14 @@
 #include <iostream>
 #include "TrudyTheCrawler.h"
+#include "curl/curl.h"
+#include <string>
+#include "HTTP.h"
 #include "HTMLParser.h"
 
 using namespace std;
 using namespace htmlcxx::HTML;
 using namespace TrudyTheCrawler;
+
 
 class worker : public IThreadable
 {
@@ -15,6 +19,7 @@ class worker : public IThreadable
 		}
 };
 
+
 int main(char** argv, char** argc)
 {
 	ThreadPool _threadPool(4);
@@ -23,10 +28,22 @@ int main(char** argv, char** argc)
 		_threadPool.submitTask( new worker() );
 	}
 	
+	
+	HTMLParser var;
+	vector<string> html;
+	html = var.parse("<html><a href=\"http://www.google.de\">google</a><a href='test.html'>asfd</a></html>");
+	
+	cout << "URLs:\n";
+	
+    for(uint i=0; i<html.size(); i++)
+    	cout << html[i] << " url\n";
+
+	
+ 	HTTP httptest;
+	cout << httptest.get("http://microsoft.de")<<endl;
+	cout << httptest.getOutput();
+
 	while(true)
 	{
 	}
-	HTMLParser var;
-	//var.parseHTML("<html><a href=\"http://www.google.de\">google</a><a href='test.html'>asfd</a></html>");
-	var.parse();
 }
