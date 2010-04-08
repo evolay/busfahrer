@@ -12,7 +12,7 @@ class ThreadPool
 {	
 	public:
 		ThreadPool( uint poolSize = 10 );
-		~ThreadPool( void ){}
+		~ThreadPool( void );
 	
 		void						start( void );
 
@@ -25,6 +25,7 @@ class ThreadPool
 		std::vector<boost::thread>	_threadList;
 		uint						_threadCount;
 		boost::mutex				_mutex;
+		boost::condition_variable	_condition;
 };
 
 };

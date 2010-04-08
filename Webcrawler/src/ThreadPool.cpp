@@ -44,7 +44,7 @@ void ThreadPool::submitTask(IThreadable* threadable)
 	boost::mutex::scoped_lock( _mutex );
 	std::cout << "ThreadPool::submitTask -> submitting Task..." << std::endl;
 	_taskQueue.push_back( threadable );
-	//boost::thread::start_thread();
+	_condition.notify_one();
 }
 
 IThreadable* ThreadPool::getTask()
