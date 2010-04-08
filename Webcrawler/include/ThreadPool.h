@@ -23,6 +23,9 @@ class ThreadPool
 
 		std::deque<IThreadable*>	_taskQueue;
 		std::vector<boost::thread>	_threadList;
+		uint						_threadCount;
+		boost::mutex				_mutex;
+		boost::condition_variable	_condition;
 };
 
 };

@@ -6,6 +6,7 @@
 #include "HTMLParser.h"
 
 using namespace std;
+using namespace htmlcxx::HTML;
 
 /*int main( char** argv, char** argc)
 {
@@ -32,4 +33,5 @@ int main(char** argv, char** argc)
 	httptest.get("http://klamm.de");
 	std::cout << httptest.getOutput();
 */
+
 }
