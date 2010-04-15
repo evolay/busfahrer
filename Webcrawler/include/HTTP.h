@@ -6,7 +6,7 @@
 #include <curl/curl.h>
 #include <cstdlib>
 
-namespace TrudyTheCrawler
+namespace RudyTheCrawler
 {
 
 	class HTTP

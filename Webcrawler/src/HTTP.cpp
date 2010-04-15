@@ -1,7 +1,7 @@
 #include "HTTP.h"
 #include <sstream>
 
-using namespace TrudyTheCrawler;
+using namespace RudyTheCrawler;
 
 bool HTTP::get(std::string url) {
 	CURL *curl;

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace TrudyTheCrawler
+namespace RudyTheCrawler
 {
 
 class IThreadable

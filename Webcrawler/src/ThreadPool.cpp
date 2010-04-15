@@ -1,14 +1,14 @@
 #include "ThreadPool.h"
 #include <iostream>
 
-using namespace TrudyTheCrawler;
+using namespace RudyTheCrawler;
 
 unsigned int ThreadPool::threads_main( ThreadPool* threadPool ) {
 	
 	while(true)
 	{ 
 		IThreadable* _task = threadPool->getTask();
-		std::cout << "Thread: " << boost::this_thread::get_id() << " - in working progress..." << std::endl;
+		std::cout << "Thread: " << boost::this_thread::get_id() << " - is in working progress..." << std::endl;
 		if(_task == NULL) continue;
 		_task->run();
 		delete _task;
@@ -26,7 +26,6 @@ ThreadPool::ThreadPool(uint poolSize)
 	
 	for(uint i=0; i < _threadCount; i++)
 		_threadList.push_back( new boost::thread( boost::bind(&ThreadPool::threads_main, this, this)) );
-
 }
 
 ThreadPool::~ThreadPool(void)
