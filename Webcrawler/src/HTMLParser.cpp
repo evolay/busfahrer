@@ -2,6 +2,8 @@
 
 using namespace std;
 using namespace htmlcxx;
+using namespace RudyTheCrawler;
+
 
 vector<string> HTMLParser::parse(string html) {
 	transform(html.begin(), html.end(), html.begin(), ::tolower);
@@ -13,6 +15,7 @@ vector<string> HTMLParser::parse(string html) {
 	tree<HTML::Node>::iterator end = dom.end();
 	
 	vector<string> linklist;
+	boost::regex ex("/^javascript:/gi");
 	
 	for(; it != end; ++it)
 	{
@@ -22,10 +25,10 @@ vector<string> HTMLParser::parse(string html) {
 			pair<bool, string> link = it->attribute("href");
 			if(link.first)
 			{
-				linklist.push_back(link.second);
+				if(!regex_match(link.second, ex))
+					linklist.push_back(link.second);
 			}
 		}
 	}
-	
 	return linklist;
 }

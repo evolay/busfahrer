@@ -3,7 +3,10 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <boost/regex.hpp>
 
+namespace RudyTheCrawler
+{
 class HTMLParser
 {	
 	public:
@@ -13,4 +16,5 @@ class HTMLParser
 		std::vector<std::string> parse(std::string html);
 	private:
 		std::string UpToLow(std::string str);
+};
 };

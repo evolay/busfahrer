@@ -1,49 +1,37 @@
 #include <iostream>
-#include "TrudyTheCrawler.h"
-#include "curl/curl.h"
-#include <string>
-#include "HTTP.h"
-#include "HTMLParser.h"
-
-using namespace std;
-using namespace htmlcxx::HTML;
-using namespace TrudyTheCrawler;
-
-
-class worker : public IThreadable
-{
-	public:
-		void run(){
-			std::cout << "execute Task" << std::endl;
-			boost::this_thread::sleep( boost::posix_time::milliseconds(2000) );
-		}
-};
+#include "Crawler.h"
+#include <fstream>
 
 
 int main(char** argv, char** argc)
-{
-	ThreadPool _threadPool(4);
-	for( int i=0; i < 100; i++)
-	{
-		_threadPool.submitTask( new worker() );
+{	
+	Crawler* _crawler = new Crawler( "http://betty.multimediatechnology.at/htmlparsen.html", 60 );
+	
+	int pause = 1;
+	do{
+		std::cin >> pause;
 	}
-	
-	
-	HTMLParser var;
-	vector<string> html;
-	html = var.parse("<html><a href=\"http://www.google.de\">google</a><a href='test.html'>asfd</a></html>");
-	
-	cout << "URLs:\n";
-	
-    for(unsigned int i=0; i<html.size(); i++)
-    	cout << html[i] << " url\n";
+	while( pause != 0 );
 
+	std::ofstream file( "Log.txt", std::ios::out );
 	
- 	HTTP httptest;
-	cout << httptest.get("http://microsoft.de")<<endl;
-	cout << httptest.getOutput();
-
-	while(true)
+	std::map< std::string, ParseResult>* _map = _crawler->getResultMap();
+	std::map< std::string, ParseResult>::iterator _iter = _map->begin();
+	
+	for( ; _iter != _map->end(); _iter++)
 	{
+		file << (*_iter).first << "\n";
+		file << "Broken: " << (*_iter).second._broken << "\n";
+		file << "ParentUrl: " << (*_iter).second._parentUrl << "\n\n";
 	}
+
+	file.close();
+	std::cout << std::endl << "End" << std::endl;
+
+	std::cin >> pause;
+	
+	delete _crawler;
+	return 0;
 }
+
+
