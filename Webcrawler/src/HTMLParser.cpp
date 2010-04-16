@@ -2,6 +2,8 @@
 
 using namespace std;
 using namespace htmlcxx;
+using namespace RudyTheCrawler;
+
 
 vector<string> HTMLParser::parse(string html) {
 	transform(html.begin(), html.end(), html.begin(), ::tolower);

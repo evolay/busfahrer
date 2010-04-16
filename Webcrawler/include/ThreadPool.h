@@ -3,7 +3,7 @@
 #include <boost/thread.hpp>
 #include <deque>
 
-namespace TrudyTheCrawler
+namespace RudyTheCrawler
 {
 
 typedef unsigned int uint;
