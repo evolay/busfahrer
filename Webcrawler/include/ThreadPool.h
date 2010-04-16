@@ -2,11 +2,10 @@
 #include "IThreadable.h"
 #include <boost/thread.hpp>
 #include <deque>
+typedef unsigned int uint;
 
 namespace RudyTheCrawler
 {
-
-typedef unsigned int uint;
 	
 class ThreadPool
 {	

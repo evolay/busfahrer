@@ -5,7 +5,7 @@
 
 int main(char** argv, char** argc)
 {	
-	Crawler* _crawler = new Crawler( "http://betty.multimediatechnology.at/htmlparsen.html", 60 );
+	Crawler* _crawler = new Crawler( "http://goltergaul.de/crawler/", 60 );
 	
 	int pause = 1;
 	do{
