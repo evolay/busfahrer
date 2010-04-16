@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <boost/regex.hpp>
 
 class HTMLParser
 {	
