@@ -5,7 +5,7 @@ using namespace htmlcxx;
 using namespace RudyTheCrawler;
 
 
-vector<string> HTMLParser::parse(string html) {
+vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 	transform(html.begin(), html.end(), html.begin(), ::tolower);
 	
 	htmlcxx::HTML::ParserDom parser;
@@ -26,7 +26,22 @@ vector<string> HTMLParser::parse(string html) {
 			if(link.first)
 			{
 				if(!regex_match(link.second, ex))
-					linklist.push_back(link.second);
+				{
+					boost::smatch _match;
+					ex.assign( "^(http)", boost::regex_constants::icase);
+					std::string _url = link.second;
+
+					if( !boost::regex_search( _url, _match, ex ) )
+					{
+						ex.assign( "\\A(.*\\/)", boost::regex_constants::icase);
+						boost::regex_search( parentUrl, _match, ex );
+						_url = _match.str() + _url;
+					}
+					ex.assign( "^([^#]*)", boost::regex_constants::icase );
+					boost::regex_search( _url, _match, ex );
+					_url = _match.str();
+					linklist.push_back( _url );
+				}
 			}
 		}
 	}

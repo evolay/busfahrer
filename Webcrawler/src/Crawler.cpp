@@ -69,26 +69,23 @@ void Worker::run()
 
 			//adding current url + parentUrl to map
 			(*_resultMap)[ _url ] = ParseResult( false, _parentUrl );
+
 			_e.assign( "^(?:[^\\/]+:\\/\\/)?([^\\/:]+)", boost::regex_constants::icase);
-				
 			boost::regex_search( _url, _match, _e );
-			std::string _bla, _blu;
-			_bla = _crawler->getDomainName();
-			_blu = _match.str();
-			if(  _crawler->getDomainName() != _match.str())
+
+			if( _crawler->getDomainName() != _match.str())
 				return;
 		
-			
 			//getting linklist by parser
 			HTMLParser parser;
-			std::vector<std::string> _list = parser.parse( _request.getOutput() );
+			std::vector<std::string> _list = parser.parse( _request.getOutput(), _parentUrl );
 
 			for( uint i=0; i<_list.size(); i++)
 			{
 				//lock the loop for thread-safety while writing in map
 				boost::mutex::scoped_lock( _mutex );
 				//check if link is already in map
-				if( (*_resultMap).count( _list[i] ) == 0 )
+				if( (*_resultMap).find( _list[i] ) == (*_resultMap).end() )
 					_crawler->getThreadPool()->submitTask( new Worker( _crawler, _list[i], _url ) );
 			}
 		}

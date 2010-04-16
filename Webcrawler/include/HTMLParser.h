@@ -13,7 +13,7 @@ class HTMLParser
 		HTMLParser() {}
 		~HTMLParser() {}
 
-		std::vector<std::string> parse(std::string html);
+		std::vector<std::string> parse(std::string html, std::string parentUrl );
 	private:
 		std::string UpToLow(std::string str);
 };
