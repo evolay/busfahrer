@@ -2,7 +2,6 @@
 #include <string>
 #include <iostream>
 #include <curl/curl.h>
-#include <cstdlib>
 
 namespace TrudyTheCrawler
 {

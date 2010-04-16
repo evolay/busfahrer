@@ -35,7 +35,7 @@ int main(char** argv, char** argc)
 	
 	cout << "URLs:\n";
 	
-    for(uint i=0; i<html.size(); i++)
+    for(unsigned int i=0; i<html.size(); i++)
     	cout << html[i] << " url\n";
 
 	
