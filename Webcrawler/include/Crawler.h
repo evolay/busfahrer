@@ -15,6 +15,8 @@ class Crawler
 		~Crawler(void);
 		
 		std::map< std::string, ParseResult >*	getResultMap(); //returns reference to already parsed links
+		int 									_request_count;
+		void countUp();
 		ThreadPool*								getThreadPool(); //returns reference to pool to submit task
 		std::string								getDomainName(); //returns filtert domain name
 

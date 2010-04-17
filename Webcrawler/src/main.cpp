@@ -3,21 +3,19 @@
 #include <fstream>
 #include "time.h"
 
-
 int main(char** argv, char** argc)
 {	
 	time_t seconds;
 	seconds = time(NULL);	
-	Crawler* _crawler = new Crawler( "http://webreload.de", 60 );
+	Crawler* _crawler = new Crawler( "http://webreload.de", 100 );
 
 	
 	int pause = 1;
 	do{
-		std::cin >> pause;
+		printf ("%f requests per second\n", (float)_crawler->_request_count / (float)(time(NULL) - seconds));
+		sleep(1);
 	}
 	while( pause != 0 );
-	seconds = time(NULL) - seconds;
-	printf ("%ld seconds execution time", seconds);
 
 	std::ofstream file( "Log.txt", std::ios::out );
 	

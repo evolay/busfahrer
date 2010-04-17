@@ -3,7 +3,7 @@
 
 Crawler::Crawler( std::string url, int poolsize )
 	: _threadPool( new ThreadPool( poolsize ) ),
-	_rootDomainName( url )
+	_rootDomainName( url ), _request_count(0)
 {
 	//starting first worker with given url
 	_threadPool->submitTask( new Worker( this, url, url ) );
@@ -12,6 +12,12 @@ Crawler::Crawler( std::string url, int poolsize )
 Crawler::~Crawler(void)
 {
 	delete _threadPool;
+}
+
+void Crawler::countUp()
+{
+	boost::mutex::scoped_lock( _mutex );
+	_request_count++;
 }
 
 std::map< std::string, ParseResult >* Crawler::getResultMap()
@@ -47,6 +53,7 @@ Worker::Worker( Crawler* crawler, const std::string& url, const std::string& par
 
 void Worker::run()
 {
+	_crawler->countUp();
 	try{
 		HTTP _request;
 		//getting map from crawler

@@ -40,7 +40,6 @@ vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 							match += "/";
 						_url = match + _url;
 					}
-					std::cout << _url << std::endl;
 					/*
 					ex.assign( "^([^#]*)", boost::regex_constants::icase );
 					if( boost::regex_search( _url, _match, ex )) 
