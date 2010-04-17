@@ -78,6 +78,7 @@ void Worker::run()
 			//adding current url + parentUrl to map
 			(*_resultMap)[ _url ] = ParseResult( false, _parentUrl );
 
+			// check if we are on another domain
 			_e.assign( "^(?:[^\\/]+:\\/\\/)?([^\\/:]+)", boost::regex_constants::icase);
 			boost::regex_search( _url, _match, _e );
 
