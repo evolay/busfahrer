@@ -15,15 +15,17 @@ class Crawler
 		~Crawler(void);
 		
 		std::map< std::string, ParseResult >*	getResultMap(); //returns reference to already parsed links
-		int 									_request_count;
-		void countUp();
+		void									countUp();
 		ThreadPool*								getThreadPool(); //returns reference to pool to submit task
 		std::string								getDomainName(); //returns filtert domain name
+		bool									requestsFinished(); //returns every 5 seconds if there are any requests to do
+		int										getRequestCount(); //get number of sent request
 
 	private:
 		ThreadPool*								_threadPool;
 		std::map< std::string, ParseResult >	_resultMap;
 		std::string								_rootDomainName;
+		int 									_request_count;
 };
 
 

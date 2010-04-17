@@ -34,7 +34,15 @@ std::string Crawler::getDomainName()
 	return _match.str();
 }
 
+bool Crawler::requestsFinished()
+{
+	return _threadPool->getTasksFinished( 5000 ); //returns value every 5 seconds
+}
 
+int Crawler::getRequestCount()
+{
+	return _request_count;
+}
 //--------------------------------------------------------------->
 
 

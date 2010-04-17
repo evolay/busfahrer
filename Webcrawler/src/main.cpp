@@ -9,29 +9,28 @@ int main(char** argv, char** argc)
 	seconds = time(NULL);	
 	Crawler* _crawler = new Crawler( "http://webreload.de", 100 );
 
-	
-	int pause = 1;
-	do{
-		printf ("%f requests per second\n", (float)_crawler->_request_count / (float)(time(NULL) - seconds));
-		sleep(1);
+	while( !_crawler->requestsFinished())
+	{
+		printf ("%f requests per second\n", (float)_crawler->getRequestCount() / (float)(time(NULL) - seconds));
 	}
-	while( pause != 0 );
 
-	std::ofstream file( "Log.txt", std::ios::out );
-	
+	//getting map & iterator
 	std::map< std::string, ParseResult>* _map = _crawler->getResultMap();
 	std::map< std::string, ParseResult>::iterator _iter = _map->begin();
 	
+	//writing to logfile
+	std::ofstream file( "Log.txt", std::ios::out );
 	for( ; _iter != _map->end(); _iter++)
 	{
 		file << (*_iter).first << "\n";
 		file << "Broken: " << (*_iter).second._broken << "\n";
 		file << "ParentUrl: " << (*_iter).second._parentUrl << "\n\n";
 	}
-
 	file.close();
+
 	std::cout << std::endl << "End" << std::endl;
 
+	int pause;
 	std::cin >> pause;
 	
 	delete _crawler;

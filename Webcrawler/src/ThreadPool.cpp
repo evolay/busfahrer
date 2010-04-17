@@ -1,5 +1,6 @@
 #include "ThreadPool.h"
 #include <iostream>
+#include <windows.h>
 
 using namespace RudyTheCrawler;
 
@@ -60,6 +61,21 @@ IThreadable* ThreadPool::getTask()
 	return _tmp;
 }
 
-void ThreadPool::start( void )
+bool ThreadPool::getTasksFinished( int restIntervalMs )
 {
+	if( !_taskQueue.size() )
+	{
+		#ifdef _WIN32
+			Sleep( restIntervalMs ); //Windows
+		#else
+				sleep( restIntervalMs / 1000 ); //Unix
+		#endif
+
+		if( !_taskQueue.size() )
+			return true;
+		else 
+			return false;
+	}
+	else 
+		return false;
 }

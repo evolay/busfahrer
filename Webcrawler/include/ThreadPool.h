@@ -13,8 +13,9 @@ class ThreadPool
 		ThreadPool( uint poolSize = 10 );
 		~ThreadPool( void );
 	
-		void						start( void );
 		void						submitTask( IThreadable* threadable ); //enques task for execution (worker will be deleted after execution)
+		bool						getTasksFinished( int restIntervalMs ); //doublecheck of the queuesize in a given interval
+
 	private:
 		IThreadable*				getTask(); //returns task if queue != empty, else waiting for notification
 		unsigned int				threads_main( ThreadPool* threadPool );
