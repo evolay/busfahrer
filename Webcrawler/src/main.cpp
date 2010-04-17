@@ -1,17 +1,23 @@
 #include <iostream>
 #include "Crawler.h"
 #include <fstream>
+#include "time.h"
 
 
 int main(char** argv, char** argc)
 {	
-	Crawler* _crawler = new Crawler( "http://webreload.de", 60 );
+	time_t seconds;
+	seconds = time(NULL);	
+	Crawler* _crawler = new Crawler( "http://goltergaul.de/crawler/", 60 );
+
 	
 	int pause = 1;
 	do{
 		std::cin >> pause;
 	}
 	while( pause != 0 );
+	seconds = time(NULL) - seconds;
+	printf ("%ld seconds execution time", seconds);
 
 	std::ofstream file( "Log.txt", std::ios::out );
 	
