@@ -28,11 +28,14 @@ vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 				if(!regex_match(link.second, ex))
 				{
 					boost::smatch _match;
+					// is the link an absolute link?
 					ex.assign( "^(http)", boost::regex_constants::icase);
 					std::string _url = link.second;
 
 					if( !boost::regex_search( _url, _match, ex ) )
 					{
+						// it's a relative link
+						// copy the rest from the parent url before the relative path of the url
 						ex.assign( "((^(.*\\/\\/\\w*(\\.\\w*)+.*\\/))|(^(.*\\/\\/\\w*(\\.\\w*)+)))", boost::regex_constants::icase);
 						boost::regex_search( parentUrl, _match, ex );
 						std::string match = _match.str();
@@ -41,6 +44,7 @@ vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 						_url = match + _url;
 					}
 					/*
+					// remove ankers
 					ex.assign( "^([^#]*)", boost::regex_constants::icase );
 					if( boost::regex_search( _url, _match, ex )) 
 					{
