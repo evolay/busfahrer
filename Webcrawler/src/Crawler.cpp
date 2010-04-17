@@ -6,7 +6,7 @@ Crawler::Crawler( std::string url, int poolsize )
 	_rootDomainName( url )
 {
 	//starting first worker with given url
-	_threadPool->submitTask( new Worker( this, url, "root" ) );
+	_threadPool->submitTask( new Worker( this, url, url ) );
 }
 
 Crawler::~Crawler(void)
@@ -55,14 +55,6 @@ void Worker::run()
 		//checking domains
 		boost::regex _e;
 		boost::smatch _match;
-		_e.assign( "^(http)", boost::regex_constants::icase);
-
-		if( !boost::regex_search( _url, _match, _e ) )
-		{
-			_e.assign( "\\A(.*\\/)", boost::regex_constants::icase);
-			boost::regex_search( _parentUrl, _match, _e );
-			_url = _match.str() + _url;
-		}
 
 		if( _request.get( _url ) )
 		{	

@@ -33,9 +33,12 @@ vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 
 					if( !boost::regex_search( _url, _match, ex ) )
 					{
-						ex.assign( "\\A(.*\\/)", boost::regex_constants::icase);
+						ex.assign( "^((http|https):\\/\\/\\w*(\\.\\w*)+([^\\/].\\w*)?)", boost::regex_constants::icase);
 						boost::regex_search( parentUrl, _match, ex );
-						_url = _match.str() + _url;
+						std::string match = _match.str();
+						if(match[match.length()-1] != '/')
+							match += "/";
+						_url = match + _url;
 					}
 					
 					/*
@@ -45,6 +48,8 @@ vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 						_url = _match.str();
 					}
 					*/
+std:: cout << "pARENT" << parentUrl << std::endl;
+std::cout <<"efef" <<_url << std::endl;
 					linklist.push_back( _url );
 				}
 			}
