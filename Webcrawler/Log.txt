@@ -1,0 +1,8 @@
+http://goltergaul.de/crawler/
+Broken: 0
+ParentUrl: root
+
+http://multimediatechnology.at
+Broken: 0
+ParentUrl: http://goltergaul.de/crawler/
+

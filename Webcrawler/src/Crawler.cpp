@@ -42,6 +42,7 @@ Worker::Worker( Crawler* crawler, const std::string& url, const std::string& par
 	_crawler( crawler ),
 	_parentUrl( parentUrl )
 {
+
 }
 
 void Worker::run()

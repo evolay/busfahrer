@@ -37,9 +37,14 @@ vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 						boost::regex_search( parentUrl, _match, ex );
 						_url = _match.str() + _url;
 					}
+					
+					/*
 					ex.assign( "^([^#]*)", boost::regex_constants::icase );
-					boost::regex_search( _url, _match, ex );
-					_url = _match.str();
+					if( boost::regex_search( _url, _match, ex )) 
+					{
+						_url = _match.str();
+					}
+					*/
 					linklist.push_back( _url );
 				}
 			}
