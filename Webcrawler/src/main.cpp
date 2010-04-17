@@ -8,7 +8,7 @@ int main(char** argv, char** argc)
 {	
 	time_t seconds;
 	seconds = time(NULL);	
-	Crawler* _crawler = new Crawler( "http://goltergaul.de/crawler/", 60 );
+	Crawler* _crawler = new Crawler( "http://webreload.de", 60 );
 
 	
 	int pause = 1;
