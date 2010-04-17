@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Webcrawler", "Webcrawler\Webcrawler.vcproj", "{553F2C71-80CA-49BC-A3A2-17D71F635010}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{553F2C71-80CA-49BC-A3A2-17D71F635010}.Debug|Win32.ActiveCfg = Debug|Win32
+		{553F2C71-80CA-49BC-A3A2-17D71F635010}.Debug|Win32.Build.0 = Debug|Win32
+		{553F2C71-80CA-49BC-A3A2-17D71F635010}.Release|Win32.ActiveCfg = Release|Win32
+		{553F2C71-80CA-49BC-A3A2-17D71F635010}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
