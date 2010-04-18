@@ -9,9 +9,11 @@ int main(char** argv, char** argc)
 	seconds = time(NULL);	
 	Crawler* _crawler = new Crawler( "http://webreload.de", 100 );
 
-	while( !_crawler->requestsFinished())
+	int abort = 0;
+	while( abort != 1)
 	{
 		printf ("%f requests per second\n", (float)_crawler->getRequestCount() / (float)(time(NULL) - seconds));
+		std::cin >> abort;
 	}
 
 	//getting map & iterator
