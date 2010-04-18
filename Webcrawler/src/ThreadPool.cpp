@@ -23,6 +23,7 @@ unsigned int ThreadPool::threads_main( ThreadPool* threadPool ) {
 
 ThreadPool::ThreadPool(uint poolSize)
 {
+	_ActiveTaskCount = 0;
 	uint _size;
 	if(poolSize <= 0)_size = 10;
 	else _threadCount = poolSize;
@@ -44,6 +45,14 @@ void ThreadPool::submitTask(IThreadable* threadable)
 		//std::cout << "ThreadPool::submitTask -> submitting Task..." << std::endl;
 		_taskQueue.push_back( threadable );
 		_taskCondition.notify_one();
+		_ActiveTaskCount++;
+	_mutex.unlock();
+}
+
+void ThreadPool::decreaseTaskCount()
+{
+	_mutex.lock();
+		_ActiveTaskCount--;
 	_mutex.unlock();
 }
 
@@ -65,6 +74,7 @@ IThreadable* ThreadPool::getTask()
 
 bool ThreadPool::getTasksFinished( int restIntervalMs )
 {
+	/*
 	bool abort = true;
 	for(int i=0;i<10;i++) {
 		#ifdef _WIN32
@@ -74,7 +84,16 @@ bool ThreadPool::getTasksFinished( int restIntervalMs )
 		#endif
 		if(_taskQueue.size() > 0)
 			abort = false;
-	}
+	}*/
 
-	return abort;
+	#ifdef _WIN32
+		Sleep( restIntervalMs ); //Windows
+	#else
+		sleep( restIntervalMs / 1000 ); //Unix
+	#endif
+std::cout << "Tasks running: " << _ActiveTaskCount << std::endl;
+ 	if(_ActiveTaskCount > 0)
+		return false;
+	else
+		return true;
 }

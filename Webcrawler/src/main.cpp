@@ -7,14 +7,12 @@ int main(char** argv, char** argc)
 {	
 	time_t seconds;
 	seconds = time(NULL);	
-	Crawler* _crawler = new Crawler( "http://webreload.de", 100 );
+	Crawler* _crawler = new Crawler( "http://betty.multimediatechnology.at", 100 );
 
 	int abort = 0;
-	while( abort != 1)
+	while( !_crawler->requestsFinished())
 	{
 		printf ("%f requests per second\n", (float)_crawler->getRequestCount() / (float)(time(NULL) - seconds));
-		std::cout << "Input 1 and press Enter to abort\n";		
-		std::cin >> abort;
 	}
 
 	//getting map & iterator

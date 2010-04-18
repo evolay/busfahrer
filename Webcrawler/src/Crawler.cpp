@@ -70,8 +70,9 @@ void Worker::run()
 		//checking domains
 		boost::regex _e;
 		boost::smatch _match;
-
-		if( _request.get( _url ) )
+		bool request_state = _request.get( _url );
+		_crawler->getThreadPool()->decreaseTaskCount();
+		if( request_state )
 		{	
 			std::cout << _url << " not broke " << std::endl;
 
@@ -82,8 +83,11 @@ void Worker::run()
 			_e.assign( "^(?:[^\\/]+:\\/\\/)?([^\\/:]+)", boost::regex_constants::icase);
 			boost::regex_search( _url, _match, _e );
 
-			if( _crawler->getDomainName() != _match.str())
-				return;
+			if( _crawler->getDomainName() != _match.str()) 
+			{
+				//_crawler->getThreadPool()->decreaseTaskCount();
+				return;			
+			}
 		
 			//getting linklist by parser
 			HTMLParser parser;
@@ -111,5 +115,6 @@ void Worker::run()
 		//catch regularmatch fail -> on fail: exit
 		std::cout << "Error in regex-compare: Crawler.cpp " << e.what() << std::endl;
 	}
+	//_crawler->getThreadPool()->decreaseTaskCount();
 
 }

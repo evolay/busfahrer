@@ -15,6 +15,7 @@ class ThreadPool
 	
 		void						submitTask( IThreadable* threadable ); //enques task for execution (worker will be deleted after execution)
 		bool						getTasksFinished( int restIntervalMs ); //doublecheck of the queuesize in a given interval
+		void						decreaseTaskCount();
 
 	private:
 		IThreadable*				getTask(); //returns task if queue != empty, else waiting for notification
@@ -25,6 +26,7 @@ class ThreadPool
 		uint						_threadCount;
 		boost::mutex				_mutex;
 		boost::condition_variable	_taskCondition;
+		unsigned int				_ActiveTaskCount;
 };
 
 };
