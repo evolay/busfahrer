@@ -1,0 +1,11 @@
+Found broken URL: http://deanjrobinson.com/projects/redoable/
+ParentUrl: http://betty.multimediatechnology.at/?page_id=11
+
+Found broken URL: http://www.deanjrobinson.com
+ParentUrl: http://betty.multimediatechnology.at/?cat=4
+
+Searched URL "http://betty.multimediatechnology.at" for broken links...
+Found
+2 broken Links
+53 good links
+from 55 links to search
