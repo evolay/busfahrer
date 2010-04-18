@@ -100,7 +100,7 @@ void Worker::run()
 		}
 		else
 		{
-			std::cout << _url << "broke" << std::endl;
+			std::cout << _url << " broken" << std::endl;
 
 			//adding current url + parentUrl to map
 			(*_resultMap)[ _url ] = ParseResult( true, _parentUrl );

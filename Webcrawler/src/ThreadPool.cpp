@@ -11,7 +11,7 @@ unsigned int ThreadPool::threads_main( ThreadPool* threadPool ) {
 	while(true)
 	{ 
 		IThreadable* _task = threadPool->getTask();
-		std::cout << "Thread: " << boost::this_thread::get_id() << " - is in working progress..." << std::endl;
+		//std::cout << "Thread: " << boost::this_thread::get_id() << " - is in working progress..." << std::endl;
 		if(_task == NULL) continue;
 		_task->run();
 		delete _task;
@@ -41,7 +41,7 @@ ThreadPool::~ThreadPool(void)
 void ThreadPool::submitTask(IThreadable* threadable)
 {
 	_mutex.lock();
-		std::cout << "ThreadPool::submitTask -> submitting Task..." << std::endl;
+		//std::cout << "ThreadPool::submitTask -> submitting Task..." << std::endl;
 		_taskQueue.push_back( threadable );
 		_taskCondition.notify_one();
 	_mutex.unlock();

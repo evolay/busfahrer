@@ -13,6 +13,7 @@ int main(char** argv, char** argc)
 	while( abort != 1)
 	{
 		printf ("%f requests per second\n", (float)_crawler->getRequestCount() / (float)(time(NULL) - seconds));
+		std::cout << "Input 1 and press Enter to abort\n";		
 		std::cin >> abort;
 	}
 
