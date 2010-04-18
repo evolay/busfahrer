@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Crawler.h"
 #include <fstream>
+#include <sstream>
 #include "time.h"
 
 int main(char** argv, char** argc)
@@ -20,12 +21,26 @@ int main(char** argv, char** argc)
 	
 	//writing to logfile
 	std::ofstream file( "Log.txt", std::ios::out );
+	int _brokenLinks = 0;
+
 	for( ; _iter != _map->end(); _iter++)
 	{
-		file << (*_iter).first << "\n";
-		file << "Broken: " << (*_iter).second._broken << "\n";
-		file << "ParentUrl: " << (*_iter).second._parentUrl << "\n\n";
+		if( (*_iter).second._broken )
+		{
+			file << "Found broken URL: " << (*_iter).first << "\n";
+			file << "ParentUrl: " << (*_iter).second._parentUrl << "\n\n";
+			++_brokenLinks;
+		}
 	}
+
+	std::stringstream _oss;
+	_oss << _brokenLinks;
+	file << "Searched URL \"" << _crawler->getDomainName() << "\" for broken links...\n";
+	file << "Found\n" << _oss.str() << " broken Links\n"; _oss.clear();
+	_oss << ( _map->size() - _brokenLinks );
+	file << _oss.str() << " good links\n"; _oss.clear();
+	_oss << _map->size();
+	file << "from " << _oss.str() << " links to search\n";
 	file.close();
 
 	std::cout << std::endl << "End" << std::endl;
