@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Crawler.h"
 #include <fstream>
-#include <sstream>
 #include "time.h"
 
 int main(char** argv, char** argc)
@@ -33,21 +32,14 @@ int main(char** argv, char** argc)
 		}
 	}
 
-	std::stringstream _oss;
-	_oss << _brokenLinks;
 	file << "Searched URL \"" << _crawler->getDomainName() << "\" for broken links...\n";
-	file << "Found\n" << _oss.str() << " broken Links\n"; _oss.clear();
-	_oss << ( _map->size() - _brokenLinks );
-	file << _oss.str() << " good links\n"; _oss.clear();
-	_oss << _map->size();
-	file << "from " << _oss.str() << " links to search\n";
+	file << "Found\n" << _brokenLinks << " broken Links\n";
+	file << ( _map->size() - _brokenLinks ) << " good links\n";
+	file << "from " << _map->size() << " links to search\n";
 	file.close();
 
 	std::cout << std::endl << "End" << std::endl;
 
-	int pause;
-	std::cin >> pause;
-	
 	delete _crawler;
 	return 0;
 }

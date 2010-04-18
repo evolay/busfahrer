@@ -65,19 +65,16 @@ IThreadable* ThreadPool::getTask()
 
 bool ThreadPool::getTasksFinished( int restIntervalMs )
 {
-	if( !_taskQueue.size() )
-	{
+	bool abort = true;
+	for(int i=0;i<10;i++) {
 		#ifdef _WIN32
 			Sleep( restIntervalMs ); //Windows
 		#else
-				sleep( restIntervalMs / 1000 ); //Unix
+			sleep( restIntervalMs / 1000 ); //Unix
 		#endif
-
-		if( !_taskQueue.size() )
-			return true;
-		else 
-			return false;
+		if(_taskQueue.size() > 0)
+			abort = false;
 	}
-	else 
-		return false;
+
+	return abort;
 }
