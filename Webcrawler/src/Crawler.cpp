@@ -1,5 +1,6 @@
 #include "Crawler.h"
 #include <boost/regex.hpp>
+#include "Mysql.h"
 
 Crawler::Crawler( std::string url, int poolsize )
 	: _threadPool( new ThreadPool( poolsize ) ),
@@ -72,6 +73,12 @@ void Worker::run()
 		boost::smatch _match;
 		bool request_state = _request.get( _url );
 		_crawler->getThreadPool()->decreaseTaskCount();
+
+		// insert into database
+		_mutex.lock();
+			Mysql::insert_link(_url , _parentUrl, !request_state);
+		_mutex.unlock();
+
 		if( request_state )
 		{	
 			std::cout << _url << " not broke " << std::endl;
