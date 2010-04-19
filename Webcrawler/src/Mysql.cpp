@@ -1,5 +1,6 @@
 #include "Mysql.h"
 #include "ssql_structs.h"
+#include <sstream>
 using namespace RudyTheCrawler;
 
 mysqlpp::Connection Mysql::_connection = mysqlpp::Connection(false);
@@ -15,31 +16,12 @@ void Mysql::connect(char* db, char* server, char* user, char* pass)
 
 int Mysql::insert_link(std::string link, std::string parent, bool broken)
 {
-	std::cout << "INSERT: " << link <<":" << parent << ":" << broken << std::endl;
-	try {
-		mylink row(link.c_str(), parent.c_str(), broken);
-		mysqlpp::Query query = Mysql::_connection.query();
-		query.insert(row);
-		query.execute();
 
-		//std::cout << query << std::endl;
-	}
-	catch (const mysqlpp::BadQuery& er) {
-		// Handle any query errors
-		std::cerr << "Query error: " << er.what() << std::endl;
-		return -1;
-	}
-	catch (const mysqlpp::BadConversion& er) {  
-		// Handle bad conversions
-		std::cerr << "Conversion error: " << er.what() << std::endl <<
-			"\tretrieved data size: " << er.retrieved <<
-			", actual size: " << er.actual_size << std::endl;
-		return -1;
-	}
-	catch (const mysqlpp::Exception& er) {
-		// Catch-all for any other MySQL++ exceptions
-		std::cerr << "Error: " << er.what() << std::endl;
-		return -1;
-	}
-	return 0;
+	std::ostringstream oss;
+	oss << "INSERT INTO mylink (url,parent_url,broken) VALUES ('" << link << "','" << parent << "'," <<broken <<")";
+
+	std::string insert = oss.str();
+	std::cout << insert << std::endl;
+	mysqlpp::Query query = Mysql::_connection.query(insert.c_str());
+	query.execute();
 }

@@ -1,6 +1,6 @@
 VPATH=src/
 CXXFLAGS = -Wall -Iinclude/ -I/usr/include/mysql -I/usr/local/include/mysql++
-CXX = g++ -g
+CXX = g++ -g -O0
 
 all: Webcrawler
 
