@@ -2,9 +2,44 @@
 #include "Crawler.h"
 #include <fstream>
 #include "time.h"
+#include "Mysql.h"
+#include "ssql_structs.h"
+Mysql mysql;
 
 int main(char** argv, char** argc)
 {	
+	try {
+		mysql.connect("webcrawler","localhost","root","");
+	} catch(char const* e) { std::cout << e << std::endl; return 1;}
+
+	try {
+	mylink row("link", "parent", false);
+	mysqlpp::Query query = mysql.query();
+	query.insert(row);
+	query.execute();
+
+	std::cout << query << std::endl;
+	}
+	catch (const mysqlpp::BadQuery& er) {
+		// Handle any query errors
+		std::cerr << "Query error: " << er.what() << std::endl;
+		return -1;
+	}
+	catch (const mysqlpp::BadConversion& er) {  
+		// Handle bad conversions
+		std::cerr << "Conversion error: " << er.what() << std::endl <<
+			"\tretrieved data size: " << er.retrieved <<
+			", actual size: " << er.actual_size << std::endl;
+		return -1;
+	}
+	catch (const mysqlpp::Exception& er) {
+		// Catch-all for any other MySQL++ exceptions
+		std::cerr << "Error: " << er.what() << std::endl;
+		return -1;
+	}
+
+	return 1;
+
 	time_t seconds;
 	seconds = time(NULL);	
 	Crawler* _crawler = new Crawler( "http://betty.multimediatechnology.at", 100 );
