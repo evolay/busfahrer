@@ -1,0 +1,8 @@
+Found broken URL: http://goltergaul.de/crawler/index2.html
+ParentUrl: http://goltergaul.de/crawler/
+
+Searched URL "http://goltergaul.de" for broken links...
+Found
+1 broken Links
+3 good links
+from 4 links to search

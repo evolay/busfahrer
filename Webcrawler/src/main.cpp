@@ -15,7 +15,7 @@ int main(char** argv, char** argc)
 
 	time_t seconds;
 	seconds = time(NULL);	
-	Crawler* _crawler = new Crawler( "http://betty.multimediatechnology.at", 100 );
+	Crawler* _crawler = new Crawler( "http://goltergaul.de/crawler/", 100 );
 
 	int abort = 0;
 	while( !_crawler->requestsFinished())
@@ -69,7 +69,6 @@ int main(char** argv, char** argc)
             std::cerr << "Failed to get item list: " << query.error() << std::endl;
         }
 
-	delete _crawler;
 	return 0;
 }
 
