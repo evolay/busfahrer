@@ -13,6 +13,9 @@ bool HTTP::get(std::string url) {
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &HTTP::function_pt);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &output);
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT, 20);
+		curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
+
 		res = curl_easy_perform(curl);
 		std::cout << "ERRORCODE: "<<res<<std::endl;
 		long http_code = 0;

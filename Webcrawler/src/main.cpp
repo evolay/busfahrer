@@ -15,7 +15,7 @@ int main(char** argv, char** argc)
 
 	time_t seconds;
 	seconds = time(NULL);	
-	Crawler* _crawler = new Crawler( "http://goltergaul.de/crawler/", 100 );
+	Crawler* _crawler = new Crawler( "http://betty.multimediatechnology.at", 100 );
 
 	int abort = 0;
 	while( !_crawler->requestsFinished())

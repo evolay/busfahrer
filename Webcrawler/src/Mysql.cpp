@@ -14,14 +14,14 @@ void Mysql::connect(char* db, char* server, char* user, char* pass)
 
 }
 
-int Mysql::insert_link(std::string link, std::string parent, bool broken)
+void Mysql::insert_link(std::string link, std::string parent, bool broken)
 {
 
 	std::ostringstream oss;
 	oss << "INSERT INTO mylink (url,parent_url,broken) VALUES ('" << link << "','" << parent << "'," <<broken <<")";
 
 	std::string insert = oss.str();
-	std::cout << insert << std::endl;
+	//std::cout << insert << std::endl;
 	mysqlpp::Query query = Mysql::_connection.query(insert.c_str());
 	query.execute();
 }

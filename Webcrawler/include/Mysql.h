@@ -11,7 +11,7 @@ namespace RudyTheCrawler
 			static mysqlpp::Connection 						_connection;
 			
 			void connect(char* db, char* server, char* user, char* pass);
-			static int insert_link(std::string link, std::string parent, bool broken);
+			static void insert_link(std::string link, std::string parent, bool broken);
 
 	};
 

@@ -17,8 +17,9 @@ Crawler::~Crawler(void)
 
 void Crawler::countUp()
 {
-	boost::mutex::scoped_lock( getThreadPool()->_mutex );
+	getThreadPool()->_mutex.lock();
 	_request_count++;
+	getThreadPool()->_mutex.unlock();
 }
 
 std::map< std::string, ParseResult >* Crawler::getResultMap()
@@ -62,7 +63,6 @@ Worker::Worker( Crawler* crawler, const std::string& url, const std::string& par
 
 void Worker::run()
 {
-	_crawler->countUp();
 	try{
 		HTTP _request;
 		//getting map from crawler
@@ -71,13 +71,14 @@ void Worker::run()
 		//checking domains
 		boost::regex _e;
 		boost::smatch _match;
+		_crawler->countUp();
 		bool request_state = _request.get( _url );
 		_crawler->getThreadPool()->decreaseTaskCount();
 
 		// insert into database
-		_mutex.lock();
+		_crawler->getThreadPool()->_mutex.lock();
 			Mysql::insert_link(_url , _parentUrl, !request_state);
-		_mutex.unlock();
+		_crawler->getThreadPool()->_mutex.unlock();
 
 		if( request_state )
 		{	
