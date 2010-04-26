@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Webcrawler/Log.txt
 Found broken URL: http://www.fh/#contentblock
 ParentUrl: http://www.fh-salzburg.ac.at
 
@@ -408,3 +409,16 @@ Found
 135 broken Links
 14 good links
 from 149 links to search
+=======
+Found broken URL: http://deanjrobinson.com/projects/redoable/
+ParentUrl: http://betty.multimediatechnology.at/?page_id=11
+
+Found broken URL: http://www.deanjrobinson.com
+ParentUrl: http://betty.multimediatechnology.at/?cat=4
+
+Searched URL "http://betty.multimediatechnology.at" for broken links...
+Found
+2 broken Links
+53 good links
+from 55 links to search
+>>>>>>> ffcd26d4215d42cb7a365b739893a0eba158368c:Webcrawler/Log.txt
