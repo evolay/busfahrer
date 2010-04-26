@@ -7,7 +7,7 @@ int main(char** argv, char** argc)
 {	
 	time_t seconds;
 	seconds = time(NULL);	
-	Crawler* _crawler = new Crawler( "http://www.fh-salzburg.ac.at", 100 );
+	Crawler* _crawler = new Crawler( "http://pmeerw.net/", 100 );
 
 	int abort = 0;
 	while( !_crawler->requestsFinished())

@@ -6,7 +6,7 @@ using namespace RudyTheCrawler;
 
 
 vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
-	transform(html.begin(), html.end(), html.begin(), ::tolower);
+	//transform(html.begin(), html.end(), html.begin(), ::tolower);
 	
 	htmlcxx::HTML::ParserDom parser;
 	tree<HTML::Node> dom = parser.parseTree(html);
@@ -19,7 +19,7 @@ vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 	
 	for(; it != end; ++it)
 	{
-		if(it->tagName() == "a")
+		if(it->tagName() == "a" || it->tagName() == "A")
 		{
 			it->parseAttributes();
 			pair<bool, string> link = it->attribute("href");
