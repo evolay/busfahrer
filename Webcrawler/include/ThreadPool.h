@@ -2,6 +2,8 @@
 #include "IThreadable.h"
 #include <boost/thread.hpp>
 #include <deque>
+#include <vector>
+
 typedef unsigned int uint;
 
 namespace RudyTheCrawler

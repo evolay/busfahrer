@@ -13,7 +13,7 @@ unsigned int ThreadPool::threads_main( ThreadPool* threadPool ) {
 		IThreadable* _task = threadPool->getTask();
 		//std::cout << "Thread: " << boost::this_thread::get_id() << " - is in working progress..." << std::endl;
 		if(_abort) {
-			std::cout << "Quitting Thread\n";
+			//std::cout << "Quitting Thread\n";
 			return 0;
 		}
 		if(_task == NULL) continue;

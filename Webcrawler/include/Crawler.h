@@ -21,13 +21,13 @@ class Crawler
 		std::string								getDomainName(); //returns filtert domain name
 		bool									requestsFinished(); //returns every 5 seconds if there are any requests to do
 		int										getRequestCount(); //get number of sent request
-		boost::mutex					_mutex;
 
 	private:
 		ThreadPool*								_threadPool;
 		std::map< std::string, ParseResult >	_resultMap;
 		std::string								_rootDomainName;
 		int 									_request_count;
+		boost::mutex								_mutex;
 };
 
 
@@ -38,6 +38,7 @@ class Worker : public IThreadable
 		~Worker();
 
 		void					run();
+		static boost::mutex			_mutex;
 
 	private:
 		std::string				_url, _parentUrl;

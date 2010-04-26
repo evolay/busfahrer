@@ -1,47 +1,8 @@
-Found broken URL: http://betty.multimediatechnology.at/?feed=rss2&amp;p=15
-ParentUrl: http://betty.multimediatechnology.at/?p=15#more-15
+Found broken URL: http://goltergaul.de/crawler/index2.html
+ParentUrl: http://goltergaul.de/crawler/index.html
 
-Found broken URL: http://betty.multimediatechnology.at/wp-trackback.php?p=15
-ParentUrl: http://betty.multimediatechnology.at/?p=15#comments
-
-Found broken URL: http://deanjrobinson.com/projects/redoable/
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Found broken URL: http://multimediatechnology.at/
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Found broken URL: http://multimediatechnology.at/2010/04/14/klangdimensionen/
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Found broken URL: http://multimediatechnology.at/2010/04/19/aviator-game/
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Found broken URL: http://multimediatechnology.at/2010/04/23/spring-show/
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Found broken URL: http://pipes.yahoo.com/pipes/pipe.info?_id=651e866f7ee42c8bfe45060b5b51504d
-ParentUrl: http://betty.multimediatechnology.at
-
-Found broken URL: http://pipes.yahoo.com/pipes/pipe.run?_id=651e866f7ee42c8bfe45060b5b51504d&#038;_render=rss
-ParentUrl: http://betty.multimediatechnology.at
-
-Found broken URL: http://www.ajaxlines.com/ajax/stuff/article/getting_started_with_facebooker.php
-ParentUrl: http://betty.multimediatechnology.at/?p=15#comments
-
-Found broken URL: http://www.deanjrobinson.com
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Found broken URL: http://www.hs-kaprun.salzburg.at/
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Found broken URL: http://www.immobilien-saalfelden.at/
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Found broken URL: http://www.users.fh-salzburg.ac.at/%7Efhs30185/
-ParentUrl: http://betty.multimediatechnology.at/?page_id=11
-
-Searched URL "http://betty.multimediatechnology.at" for broken links...
+Searched URL "http://goltergaul.de" for broken links...
 Found
-14 broken Links
-40 good links
-from 54 links to search
+1 broken Links
+2 good links
+from 3 links to search

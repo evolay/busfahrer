@@ -17,9 +17,9 @@ Crawler::~Crawler(void)
 
 void Crawler::countUp()
 {
-	getThreadPool()->_mutex.lock();
+	_mutex.lock();
 	_request_count++;
-	getThreadPool()->_mutex.unlock();
+	_mutex.unlock();
 }
 
 std::map< std::string, ParseResult >* Crawler::getResultMap()
@@ -53,6 +53,10 @@ ThreadPool* Crawler::getThreadPool()
 	return _threadPool;
 }
 
+/////////////////////////////////////////////////////
+
+boost::mutex Worker::_mutex;
+
 Worker::Worker( Crawler* crawler, const std::string& url, const std::string& parentUrl )
 	: _url( url ),
 	_crawler( crawler ),
@@ -76,16 +80,18 @@ void Worker::run()
 		_crawler->getThreadPool()->decreaseTaskCount();
 
 		// insert into database
-		_crawler->getThreadPool()->_mutex.lock();
+		Worker::_mutex.lock();
 			Mysql::insert_link(_url , _parentUrl, !request_state);
-		_crawler->getThreadPool()->_mutex.unlock();
+		Worker::_mutex.unlock();
 
 		if( request_state )
 		{	
 			std::cout << _url << " not broke " << std::endl;
 
 			//adding current url + parentUrl to map
+			Worker::_mutex.lock();
 			(*_resultMap)[ _url ] = ParseResult( false, _parentUrl );
+			Worker::_mutex.unlock();
 
 			// check if we are on another domain
 			_e.assign( "^(?:[^\\/]+:\\/\\/)?([^\\/:]+)", boost::regex_constants::icase);
@@ -104,7 +110,7 @@ void Worker::run()
 			for( uint i=0; i<_list.size(); i++)
 			{
 				//lock the loop for 
-				boost::mutex::scoped_lock( _crawler->getThreadPool()->_mutex);
+				boost::mutex::scoped_lock( _mutex);
 				//check if link is already in map
 				if( (*_resultMap).find( _list[i] ) == (*_resultMap).end() )
 					_crawler->getThreadPool()->submitTask( new Worker( _crawler, _list[i], _url ) );
