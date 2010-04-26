@@ -36,7 +36,8 @@ vector<string> HTMLParser::parse(string html, std::string parentUrl ) {
 					{
 						// it's a relative link
 						// copy the rest from the parent url before the relative path of the url
-						ex.assign( "((^(.*\\/\\/\\w*(\\.\\w*)+.*\\/))|(^(.*\\/\\/\\w*(\\.\\w*)+)))", boost::regex_constants::icase);
+						//ex.assign( "((^(.*\\/\\/\\w*(\\.\\w*)+.*\\/))|(^(.*\\/\\/\\w*(\\.\\w*)+)))", boost::regex_constants::icase);
+						ex.assign( "((^(.*\\/\\/.*(\\..*)+.*\\/))|(^(.*\\/\\/.*(\\..*)+)))", boost::regex_constants::icase);
 						boost::regex_search( parentUrl, _match, ex );
 						std::string match = _match.str();
 						if(match[match.length()-1] != '/')

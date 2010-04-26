@@ -16,7 +16,7 @@ Crawler::~Crawler(void)
 
 void Crawler::countUp()
 {
-	boost::mutex::scoped_lock( _mutex );
+	boost::mutex::scoped_lock( getThreadPool()->_mutex );
 	_request_count++;
 }
 
@@ -95,8 +95,8 @@ void Worker::run()
 
 			for( uint i=0; i<_list.size(); i++)
 			{
-				//lock the loop for thread-safety while writing in map
-				boost::mutex::scoped_lock( _mutex );
+				//lock the loop for 
+				boost::mutex::scoped_lock( _crawler->getThreadPool()->_mutex);
 				//check if link is already in map
 				if( (*_resultMap).find( _list[i] ) == (*_resultMap).end() )
 					_crawler->getThreadPool()->submitTask( new Worker( _crawler, _list[i], _url ) );

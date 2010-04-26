@@ -3,6 +3,7 @@
 #include "HTTP.h"
 #include "HTMLParser.h"
 #include "IThreadable.h"
+#include <boost/thread.hpp>
 
 using namespace RudyTheCrawler;
 
@@ -20,6 +21,7 @@ class Crawler
 		std::string								getDomainName(); //returns filtert domain name
 		bool									requestsFinished(); //returns every 5 seconds if there are any requests to do
 		int										getRequestCount(); //get number of sent request
+		boost::mutex					_mutex;
 
 	private:
 		ThreadPool*								_threadPool;
@@ -40,7 +42,6 @@ class Worker : public IThreadable
 	private:
 		std::string				_url, _parentUrl;
 		Crawler*				_crawler;
-		boost::mutex			_mutex;
 };
 
 
