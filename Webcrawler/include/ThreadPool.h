@@ -27,6 +27,7 @@ boost::mutex					_mutex;
 		uint						_threadCount;
 		boost::condition_variable	_taskCondition;
 		unsigned int				_ActiveTaskCount;
+		bool 				_abort;
 };
 
 };
