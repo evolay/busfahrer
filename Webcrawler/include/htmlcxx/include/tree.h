@@ -51,6 +51,8 @@
 #include <iterator>
 #include <set>
 
+#include <cstddef>   //add by evolay,2014/10/16
+
 // HP-style construct/destroy have gone from the standard,
 // so here is a copy.
 
